@@ -1,24 +1,27 @@
 const express = require('express');
 const router = express.Router();
 
+// Controllers
+controllers = require('../controllers/controllers');
+
 // home controller
-const home = require('../controllers/home');
+const homeController = controllers.homeController;
 // image controller
-const image = require('../controllers/image');
+const imageController = controllers.imageController;
 
 module.exports = app =>{
 	// Index del sitio
-	router.get('/', home.index);
+	router.get('/', homeController.index);
 	// Ver una imagen
-	router.get('/images/:image_id', image.viewImg);
+	router.get('/images/:image_id', imageController.viewImg);
 	// Agregar una imagen
-	router.post('/images', image.addImg);
+	router.post('/images', imageController.addImg);
 	// Like a una imagen
-	router.post('/images/:image_id/like', image.likeImg);
+	router.post('/images/:image_id/like', imageController.likeImg);
 	// Comentar una imagen
-	router.post('/images/:image_id/comment', image.commentImg);
+	router.post('/images/:image_id/comment', imageController.commentImg);
 	// Eliminar una imagen
-	router.delete('/images/:image_id', image.deleteImg);
+	router.delete('/images/:image_id', imageController.deleteImg);
 
 	app.use(router);
 }
