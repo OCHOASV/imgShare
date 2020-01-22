@@ -1,5 +1,7 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+/*** Este modelo es solo para guardar las imagenes en MongoDB ***/
+
+// requerimos solo el Schema y el modelo de mongoose
+const { Schema, model } = require('mongoose');
 const path = require('path');
 
 const imgSchema = new Schema(
@@ -13,10 +15,12 @@ const imgSchema = new Schema(
 	}
 );
 
+// Nombre de archivo con extencion
 imgSchema.virtual('uniqueID')
-	.get( () => {
-		return this.filename.replace(path.extname(this.filename), '');
+	.get( function() {
+		return this.filename.replace(path.extname(this.filename), '')
 	}
-	);
+);
 
-module.exports =  mongoose.model('imgModel', imgSchema);
+// Este nombre es el que tomara la collectio en MongoDB
+module.exports =  model('images', imgSchema);

@@ -1,8 +1,14 @@
 const homeController = {};
 
-homeController.index = (req, res) => {
+// Models
+models =  require('../models/models');
+// image model
+const imageModel = models.imageModel;
+
+homeController.index = async (req, res) => {
 	// helpers.isNotLoggedIn,
-	res.render('index')
+	const images = await imageModel.find().sort({recordate : -1});
+	res.render('index', {images});
 }
 
 module.exports = homeController;

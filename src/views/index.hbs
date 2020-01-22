@@ -30,6 +30,23 @@
 	</div>
 </div>
 
+<div class="card mt-2">
+	<div class="card-header bg-dark text-white">
+		<h3><i class="far fa-images"></i> Ultimas imagenes</h3>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			{{#each images}}
+				<div class="col-md-4 mt-2">
+					<a href="/images/{{uniqueID}}">
+						<img src="/public/upload/{{filename}}" alt="{{name}}" title="{{description}}" class="w-100 h-100 img-thumbnail">
+					</a>
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</div>
+
 <script>
 	$(".custom-file-input").on("change", function() {
 	 	var fileName = $(this).val().split("\\").pop();

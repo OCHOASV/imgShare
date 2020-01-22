@@ -1,4 +1,5 @@
 // Exporto los Models
 module.exports = {
-	imageModel : require('./imageModel')
+	imageModel : require('./imageModel'),
+	commentsModel : require('./commentsModel')
 };
