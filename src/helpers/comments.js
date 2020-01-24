@@ -9,7 +9,7 @@ module.exports = {
 		const comments = await commentsModel.find().limit(5).sort({recordate:-1});
 
 		for (const comment of comments) {
-			const image = await imageModel.findOne({_id : comments.imageID});
+			const image = await imageModel.findOne({_id : comment.imageID});
 			comment.image = image;
 		}
 
