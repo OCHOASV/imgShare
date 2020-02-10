@@ -9,6 +9,9 @@ models =  require('../models/models');
 const imageModel = models.imageModel;
 const commentsModel = models.commentsModel;
 
+// sidebar
+const sidebarHelper =  require('../helpers/sidebar');
+
 // Constructor
 const imgController = {};
 
@@ -27,7 +30,9 @@ imgController.viewImg = async (req, res) => {
 		image.views = image.views + 1;
 		await image.save();
 
-		res.render('viewImage', {image, comments});
+		const sidebar = await sidebarHelper();
+
+		res.render('viewImage', {image, comments, sidebar});
 	}
 	else{
 		res.redirect('/');

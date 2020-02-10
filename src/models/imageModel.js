@@ -15,12 +15,12 @@ const imgSchema = new Schema(
 	}
 );
 
-// Nombre de archivo con extencion
+// Nombre de archivo con extencion, esta propiedad es virtual, no se guarda en DB
 imgSchema.virtual('uniqueID')
 	.get( function() {
-		return this.filename.replace(path.extname(this.filename), '')
-	}
-);
+			return this.filename.replace(path.extname(this.filename), '')
+		}
+	);
 
 // Este nombre es el que tomara la collectio en MongoDB
 module.exports =  model('images', imgSchema);

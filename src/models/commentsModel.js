@@ -16,5 +16,16 @@ const commentSchema = new Schema(
 	}
 );
 
+// Virtual de uniqueID de imagen
+commentSchema.virtual('image')
+	.set(function (image) {
+			this._image = image;
+		}
+	)
+	.get(function () {
+			return this._image;
+		}
+	);
+
 // Este nombre es el que tomara la collectio en MongoDB
 module.exports =  model('comments', commentSchema);
