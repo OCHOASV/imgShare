@@ -6,14 +6,16 @@ module.exports = async () => {
 	const sidebar = await Promise.all(
 		[
 			stats(),
-			images.populars(),
+			images.popularLikes(),
+			images.popularViews(),
 			comments.newest()
 		]
 	)
 
 	return {
 		stats: sidebar[0],
-		populars: sidebar[1],
-		comments: sidebar[2]
+		popularLikes: sidebar[1],
+		popularViews: sidebar[2],
+		comments: sidebar[3]
 	}
 }

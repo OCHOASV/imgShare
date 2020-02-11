@@ -71,6 +71,7 @@ imgController.addImg = (req, res) => {
 						}
 					);
 					const imgSaved = await imgNew.save();
+					req.flash('success', 'Imagen guardada con Exito !!!');
 					res.redirect('/images/' + imgRandomName);
 				}
 				catch(e){
@@ -79,7 +80,9 @@ imgController.addImg = (req, res) => {
 			}
 			else{
 				await fs.unlink(imgTempPath);
-				res.send('Not allowed file...');
+				req.flash('danger', 'Tipo de archivo (' + imgExt + ') no valido !!!');
+				// res.send('Not allowed file...');
+				res.redirect('/');
 			}
 		}
 	}
