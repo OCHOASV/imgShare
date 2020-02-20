@@ -80,8 +80,8 @@ module.exports = app =>{
 	/*** Evitar ingreso a cualquier archivo/directorio ***/
 	app.use('/*',
 		(req, res, next) => {
-			res.send('403...');
-			// res.render('403');
+			// res.send('403...');
+			res.render('403');
 		}
 	);
 

@@ -32,7 +32,7 @@ imgController.viewImg = async (req, res) => {
 
 		const sidebar = await sidebarHelper();
 
-		res.render('viewImage', {image, comments, sidebar});
+		res.render('images/viewImage', {image, comments, sidebar});
 	}
 	else{
 		res.redirect('/');

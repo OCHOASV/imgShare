@@ -1,0 +1,31 @@
+<div class="card">
+	<div class="card-header bg-dark">
+		<h3 class="card-title text-white">
+			<i class="far fa-image"></i>
+			Sube tu Imagen
+		</h3>
+	</div>
+	<div class="card-body">
+		<form action="/images" method="POST" enctype="multipart/form-data">
+			<div class="form-group">
+				<div class="input-group">
+					<div class="custom-file">
+						<input type="file" name="upImg" id="upImg" class="custom-file-input" required>
+						<label for="upImg" class="custom-file-label">Sube tu Imagen</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="text" name="name" id="name" class="form-control" placeholder="Titulo de la Imagen" required>
+			</div>
+			<div class="form-group">
+				<textarea name="descripcion" id="descripcion" rows="2" class="form-control" placeholder="Descripcion" required></textarea>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-danger active">
+					<i class="fa fa-upload"></i> SUBIR IMAGEN
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

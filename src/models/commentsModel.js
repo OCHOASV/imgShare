@@ -8,9 +8,9 @@ const commentSchema = new Schema(
 	{
 		// ObjectId es un ID que le pertenece a otra collection
 		imageID : {type : ObjectId},
-		name : {type : String},
-		email : {type : String},
-		comment : {type : String},
+		name : {type : String, required : true},
+		email : {type : String, required : true},
+		comment : {type : String, required : true},
 		gravatar : {type : String},
 		recordate : {type : Date, default : Date.now}
 	}
