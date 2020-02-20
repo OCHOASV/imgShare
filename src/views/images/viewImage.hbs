@@ -1,0 +1,87 @@
+<div class="container p-4">
+	<div class="row">
+		<div class="col-md-8 mb-2">
+			<div class="card mt-1">
+				<div class="card-header d-flex justify-content-between aling-items-center">
+					<h2>{{image.name}}</h2>
+					<button class="btn btn-danger active" id="imgDelete" name="imgDelete" data-id="{{image.filename}}" data-name="{{image.name}}">
+						<i class="fa fa-trash"> ELIMINAR</i>
+					</button>
+				</div>
+				<div class="card-body text-center">
+					<h4>{{image.description}}</h4>
+					<div class="text-center">
+						<img src="/public/upload/{{image.filename}}" alt="{{image.name}}" title="{{image.description}}" class="img-fluid">
+					</div>
+				</div>
+				<div class="card-footer d-flex justify-content-between aling-items-center">
+					<button class="btn btn-primary active" id="imgLike" name="imgLike" data-id="{{image.filename}}">
+						<i class="fa fa-thumbs-up"> Like</i>
+					</button>
+					<p>
+						<span class="counterLikes">{{image.likes}}</span>
+						<i class="fa fa-heart"></i>
+					</p>
+					<p>
+						<i class="fa fa-eye"></i> {{image.views}}
+					</p>
+					<p>
+						<i class="fa fa-clock"></i> {{timeago image.recordate}}
+					</p>
+				</div>
+			</div>
+
+			<div class="card mt-2">
+				<div class="card-header d-flex justify-content-between aling-items-center">
+					<h3>Reseñas</h3>
+					<button class="btn btn-info active" id="comentar" name="comentar">
+						<i class="fa fa-comment-o"></i> Comentar
+					</button>
+				</div>
+				<div class="card-body">
+					<blockquote id="formComments" name="formComments">
+						<form action="/images/{{image.uniqueID}}/comment" method="POST">
+							<div class="form-group">
+								<input type="text" class="form-control" id="name" name="name" placeholder="Nombre" required>
+							</div>
+							<div class="form-group">
+								<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+							</div>
+							<div class="form-group">
+								<textarea name="comment" id="comment" rows="2" class="form-control" placeholder="Ingresa tu Comentario" required></textarea>
+							</div>
+							<div class="form-group text-right">
+								<button class="btn btn-success active">
+									<i class="fa fa-comment"></i> Comentar
+								</button>
+							</div>
+						</form>
+					</blockquote>
+					<ul class="list-group p-4">
+						{{#each comments}}
+							<li class="list-group-item">
+								<div class="row">
+									<a href="#{{_id}}" name="{{_id}}">
+										<img src="http://gravatar.com/avatar/{{gravatar}}?d=monsterid&s=50" alt="gravatar">
+									</a>
+									<blockquote class="col">
+										<p class="lead">{{comment}}</p>
+										<footer class="blockquote-footer">
+											{{name}} - {{timeago recordate}}
+										</footer>
+									</blockquote>
+								</div>
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+		</div>
+		{{!-- sidebar --}}
+		<div class="col-xs-12 col-md-4 mt-1">
+			{{> stats }}
+			{{> populars }}
+			{{> comments }}
+		</div>
+	</div>
+</div>

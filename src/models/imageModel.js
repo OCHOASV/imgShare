@@ -6,9 +6,9 @@ const path = require('path');
 
 const imgSchema = new Schema(
 	{
-		name : {type : String},
-		description : {type : String},
-		filename : {type : String},
+		name : {type : String, required : true},
+		description : {type : String, required : true},
+		filename : {type : String, required : true},
 		views : {type : Number, default : 0},
 		likes : {type : Number, default : 0},
 		recordate : {type : Date, default : Date.now}

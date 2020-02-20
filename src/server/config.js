@@ -5,6 +5,8 @@ const handlerbars = require('express-handlebars');
 const morgan = require('morgan');
 const multer = require('multer');
 const errorHandler = require('errorhandler');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 // Importo mi archivo de rutas
 const routes = require('../routes/router');
@@ -42,6 +44,15 @@ module.exports = app =>{
 	/*** Middlewares ***/
 	// HTTP request
 	app.use(morgan('dev'));
+	// Sessions
+	app.use(session ({
+			secret: 'imgShareOCHOA',
+			resave: 'false',
+			saveUninitialized: 'false'
+		})
+	);
+	// Messages
+	app.use(flash());
 	// Para subir imagenes
 	app.use(multer({
 			dest: path.join(__dirname, '../public/upload/tempIMG')
@@ -52,13 +63,25 @@ module.exports = app =>{
 	// Enviar y Recibir JSON
 	app.use(express.json());
 
+	/*** Global Variables ***/
+	// Pasa a la siguiente funcion mientras el server procesa los req y res
+	app.use(
+		(req, res, next) =>{
+			app.locals.success = req.flash('success');
+			app.locals.danger = req.flash('danger');
+			// Cuando serializamos el user, ponemos en variable global toda su info
+			// app.locals.user = req.user;
+			next();
+		}
+	);
+
 	/*** Routes ***/
 	routes(app);
 	/*** Evitar ingreso a cualquier archivo/directorio ***/
 	app.use('/*',
 		(req, res, next) => {
-			res.send('403...');
-			// res.render('403');
+			// res.send('403...');
+			res.render('403');
 		}
 	);
 
