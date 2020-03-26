@@ -1,4 +1,4 @@
-/*** Este modelo es para guardar los comentarios de las imagenes en MongoDB ***/
+/*** Guardar los comentarios de las imagenes en MongoDB ***/
 
 // requerimos solo el Schema y el modelo de mongoose
 const { Schema, model } = require('mongoose');

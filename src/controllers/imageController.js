@@ -80,7 +80,7 @@ imgController.addImg = (req, res) => {
 			}
 			else{
 				await fs.unlink(imgTempPath);
-				req.flash('danger', 'Tipo de archivo (' + imgExt + ') no valido !!!');
+				req.flash('danger', 'Tipo de archivo ' + imgExt + ' no valido !!!');
 				// res.send('Not allowed file...');
 				res.redirect('/');
 			}

@@ -3,6 +3,7 @@ const models =  require('../models/models');
 
 const imageModel = models.imageModel;
 const commentsModel = models.commentsModel;
+const userModel = models.userModel;
 
 // Imagenes totales
 async function imagesCounter() {
@@ -13,6 +14,11 @@ async function imagesCounter() {
 // Comentarios totales
 async function commentsCounter() {
 	return await commentsModel.countDocuments();
+}
+
+// Usuarios totales
+async function usersCounter() {
+	return await userModel.countDocuments();
 }
 
 // Vistas totales
@@ -64,7 +70,8 @@ module.exports = async () => {
 			imagesCounter(),
 			commentsCounter(),
 			viewsCounter(),
-			likesCounter()
+			likesCounter(),
+			usersCounter()
 		]
 	)
 
@@ -73,6 +80,7 @@ module.exports = async () => {
 		images: stats[0],
 		comments: stats[1],
 		views: stats[2],
-		likes: stats[3]
+		likes: stats[3],
+		users: stats[4]
 	}
 }

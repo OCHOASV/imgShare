@@ -1,4 +1,4 @@
-/*** Este modelo es solo para guardar las imagenes en MongoDB ***/
+/*** Guardar las imagenes en MongoDB ***/
 
 // requerimos solo el Schema y el modelo de mongoose
 const { Schema, model } = require('mongoose');

@@ -7,9 +7,12 @@ const multer = require('multer');
 const errorHandler = require('errorhandler');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
 
 // Importo mi archivo de rutas
 const routes = require('../routes/router');
+// Passport
+require('./passport');
 
 module.exports = app =>{
 
@@ -51,6 +54,10 @@ module.exports = app =>{
 			saveUninitialized: 'false'
 		})
 	);
+	// Passport
+	app.use(passport.initialize());
+	app.use(passport.session());
+
 	// Messages
 	app.use(flash());
 	// Para subir imagenes

@@ -24,11 +24,14 @@ module.exports = app =>{
 	router.post('/images/:image_id/comment', imageController.commentImg);
 	// Eliminar una imagen
 	router.delete('/images/:image_id', imageController.deleteImg);
+
 	// SingUp
 	router.get('/singup', loginController.singup);
 	router.post('/singup', loginController.singupPost);
+
 	// SingIn
 	router.get('/singin', loginController.singin);
+	router.post('/singin', loginController.singinPost);
 
 	app.use(router);
 }

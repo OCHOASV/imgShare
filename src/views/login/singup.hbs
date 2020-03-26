@@ -8,13 +8,19 @@
 				<div class="card-body">
 					<form action="/singup" method="POST">
 						<div class="form-group">
-							<input type="text" name="nick" id="nick" placeholder="Usuario" class="form-control" autofocus>
+							<input type="text" name="nick" id="nick" value="{{nick}}" placeholder="Usuario" class="form-control" autofocus required>
 						</div>
 						<div class="form-group">
-							<input type="text" name="nombre" id="nombre" placeholder="Nombre Completo" class="form-control">
+							<input type="text" name="name" id="name" value="{{name}}" placeholder="Nombre Completo" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<input type="password" name="password" id="password" placeholder="password" class="form-control">
+							<input type="email" name="email" id="email" value="{{email}}" placeholder="Email" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<input type="password" name="password" id="password" value="{{password}}" placeholder="Password" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<input type="password" name="confirmPass" id="confirmPass" value="{{confirmPass}}" placeholder="Confirm Password" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-danger active btn-block">
