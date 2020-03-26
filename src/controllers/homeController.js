@@ -17,4 +17,14 @@ homeController.index = async (req, res) => {
 	res.render('index', {images, sidebar});
 }
 
+homeController.profile = async (req, res) => {
+	// helpers.isNotLoggedIn,
+	// const images = await imageModel.find().sort({recordate : -1});
+	// const sidebar = await sidebarHelper();
+	// console.log(sidebar.comments[2].image);
+
+	// res.render('profile', {images, sidebar});
+	res.render('profile');
+}
+
 module.exports = homeController;

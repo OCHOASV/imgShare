@@ -29,4 +29,21 @@ helpers.comparePass = async(password, DBpassword) => {
 	}
 };
 
+// Si hay sesion activa
+helpers.isLoggedIn = (req, res, next) => {
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	req.flash('danger', 'No hay sesión activa !!!')
+	return res.redirect('/singin');
+}
+
+// Si NO hay sesion activa
+helpers.isNotLoggedIn = (req, res, next) => {
+	if (!req.isAuthenticated()) {
+		return next();
+	}
+	return res.redirect('/profile');
+}
+
 module.exports = helpers;

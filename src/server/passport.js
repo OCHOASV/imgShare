@@ -12,24 +12,20 @@ passport.use('local.singin',
 			passReqToCallback: true
 		},
 		async(req, nick, password, done) => {
-			// console.log(req.body)
-			// console.log(nick)
-			// console.log(password)
 
 			// Selecciono todo con el nick como llave
 			const user = await userModel.findOne({nick: nick});
 			// Si encuentra resultados
 			if (user) {
-				// Guardamos en user todo lo de la posicion 0
-				// const user = rows[0];
 				/*
 					Validamos el Password ingresado, llamamos a la funcion comparePass de helpers y le pasamos el pass que el usuario a metido y lo comparamos con el que se guarda en la DB. Devuelve TRUE o FALSE y lo guardamos en la variable validPassword
 				*/
 				const validPassword = await helpers.comparePass(password, user.password);
 				// Si el pass es correcto
 				if (validPassword) {
-					// Termino el proceso con done, con null con error, se le pasa el user para que lo serialize y un mensaje
-					done(null, user, req.flash('success', 'Welcome ' + user.nick));
+					// Termino el proceso con done, con null, se le pasa el user para que lo serialize y un mensaje
+					// done(null, user, req.flash('success', 'Welcome ' + user.nick + ' !!!'));
+					done(null, user);
 				}
 				// Si no
 				else{
@@ -44,7 +40,6 @@ passport.use('local.singin',
 	)
 );
 
-/*
 // Registro de usuario => local.singup
 passport.use('local.singup',
 	new strategy({
@@ -53,21 +48,23 @@ passport.use('local.singup',
 			passReqToCallback: true
 		},
 		async(req, nick, password, done) => {
-			const {nombre} = req.body;
-			const newUser = {
-				nick,
-				password,
-				nombre
-			};
+			const {name, email} = req.body;
+			const newUser = new userModel(
+				{
+					nick,
+					name,
+					email,
+					password
+				}
+			);
 			newUser.password = await helpers.encryptPass(password);
-			const insertUser = await MyPool.query('INSERT INTO user set ?', [newUser]);
-			// console.log(insertUser);
-			newUser.id = insertUser.insertId;
+
+			await newUser.save();
 			return done(null, newUser);
 		}
 	)
 );
-*/
+
 
 // Serializar usuario (guardar ID del usuario en user.id)
 passport.serializeUser(

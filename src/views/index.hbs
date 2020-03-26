@@ -1,6 +1,12 @@
 <div class="container p-4">
 	<div class="row">
 		<div class="col-md-8 mb-2">
+			{{!-- Upload Images --}}
+			{{#if user }}
+				{{> upload }}
+			{{/if}}
+
+			{{!-- Last Images --}}
 			<div class="card mt-1">
 				<div class="card-header bg-dark text-white">
 					<h3><i class="far fa-images"></i> Ultimas imagenes</h3>

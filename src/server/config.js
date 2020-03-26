@@ -77,7 +77,7 @@ module.exports = app =>{
 			app.locals.success = req.flash('success');
 			app.locals.danger = req.flash('danger');
 			// Cuando serializamos el user, ponemos en variable global toda su info
-			// app.locals.user = req.user;
+			app.locals.user = req.user;
 			next();
 		}
 	);

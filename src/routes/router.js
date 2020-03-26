@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const helpers = require('../helpers/helpers');
 
 // Controllers
 controllers = require('../controllers/controllers');
@@ -32,6 +33,12 @@ module.exports = app =>{
 	// SingIn
 	router.get('/singin', loginController.singin);
 	router.post('/singin', loginController.singinPost);
+
+	// Profile
+	router.get('/profile', helpers.isLoggedIn, homeController.profile);
+
+	// LogOut
+	router.get('/logout', loginController.logout);
 
 	app.use(router);
 }
