@@ -106,8 +106,11 @@ loginController.singin = async (req, res) => {
 }
 
 loginController.singinPost = async (req, res, next) => {
+	// console.log('req.body original => ' + req.body.nick);
+	// const nick = req.body.nick.toUpperCase();
+	// console.log('Nick en Mayusc => ' + nick);
 	passport.authenticate('local.singin',{
-		successRedirect: '/profile',
+		successRedirect: '/',
 		failureRedirect: '/singin',
 		failureFlash: true
 	}

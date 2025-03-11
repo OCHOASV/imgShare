@@ -11,6 +11,7 @@ const imgSchema = new Schema(
 		filename : {type : String, required : true},
 		views : {type : Number, default : 0},
 		likes : {type : Number, default : 0},
+		user : {type: String, required : true},
 		recordate : {type : Date, default : Date.now}
 	}
 );

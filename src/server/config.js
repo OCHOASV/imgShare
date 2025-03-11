@@ -1,7 +1,7 @@
 /*** Modules ***/
 const express = require('express');
 const path = require('path');
-const handlerbars = require('express-handlebars');
+const handlebars = require('express-handlebars');
 const morgan = require('morgan');
 const multer = require('multer');
 const errorHandler = require('errorhandler');
@@ -23,11 +23,11 @@ module.exports = app =>{
 	app.use('/public', express.static(path.join(__dirname, '../public')));
 	// Views directory
 	app.set('views', path.join(__dirname, '../views'));
-	// Templates Engine handlerbars config
+	// Templates Engine handlebars config
 	app.engine(
-		// Handlerbars def
+		// Handlebars def
 		'.hbs',
-		handlerbars({
+		handlebars({
 			// Archivo que manejara todas las vistas
 			defaultLayout: 'main',
 			// main Dir

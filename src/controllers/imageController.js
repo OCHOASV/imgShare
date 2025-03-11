@@ -8,6 +8,7 @@ models =  require('../models/models');
 // models
 const imageModel = models.imageModel;
 const commentsModel = models.commentsModel;
+const userModel = models.userModel;
 
 // sidebar
 const sidebarHelper =  require('../helpers/sidebar');
@@ -23,6 +24,8 @@ imgController.viewImg = async (req, res) => {
 	const image = await imageModel.findOne({filename: {$regex: imgID}});
 
 	if (image) {
+		const userIMG = await userModel.findOne({_id: image.user});
+
 		// Comments
 		const comments = await commentsModel.find({imageID : image._id}).sort({recordate : -1});
 
@@ -32,7 +35,7 @@ imgController.viewImg = async (req, res) => {
 
 		const sidebar = await sidebarHelper();
 
-		res.render('images/viewImage', {image, comments, sidebar});
+		res.render('images/viewImage', {image, comments, sidebar, userIMG});
 	}
 	else{
 		res.redirect('/');
@@ -70,6 +73,7 @@ imgController.addImg = (req, res) => {
 							filename : imgRandomName + imgExt
 						}
 					);
+					imgNew.user = req.user.id;
 					const imgSaved = await imgNew.save();
 					req.flash('success', 'Imagen guardada con Exito !!!');
 					res.redirect('/images/' + imgRandomName);

@@ -12,9 +12,10 @@ passport.use('local.singin',
 			passReqToCallback: true
 		},
 		async(req, nick, password, done) => {
+			const nickUpperCase = req.body.nick.toUpperCase();
 
 			// Selecciono todo con el nick como llave
-			const user = await userModel.findOne({nick: nick});
+			const user = await userModel.findOne({nick: nickUpperCase});
 			// Si encuentra resultados
 			if (user) {
 				/*
@@ -34,7 +35,7 @@ passport.use('local.singin',
 			}
 			// si no hay resultados
 			else{
-				return done(null, false, req.flash('danger', 'User ' + nick + ' doesn\'t exist !!!'));
+				return done(null, false, req.flash('danger', 'User ' + nickUpperCase + ' doesn\'t exist !!!'));
 			}
 		}
 	)
